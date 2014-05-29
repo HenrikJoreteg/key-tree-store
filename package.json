@@ -1,0 +1,19 @@
+{
+  "name": "key-tree-store",
+  "description": "Simple tool for storing/retrieving objects events based hierarchical keypaths.",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "devDependencies": {
+    "tape": "~2.13.1"
+  },
+  "keywords": [
+    "events",
+    "trigger",
+    "keypath"
+  ],
+  "license": "MIT",
+  "main": "key-tree-store",
+  "scripts": {
+    "test": "node test/*"
+  }
+}
