@@ -21,8 +21,12 @@ test('`add` should store objects', function (t) {
     t.equal(tree.get('first.second').length, 3, 'should be 3 that match');
     t.equal(tree.get('first.second.third').length, 1, 'should be 1 that match');
 
+    t.equal(tree.get('second.third').length, 0, 'keypaths should start at the start');
+
+    t.equal(tree.get('first.seco').length, 0, 'keypaths must be the full path, or end in a . to match');
+
     tree.remove(two);
     t.equal(tree.get('first').length, 3, 'should be 3 that match after removal');
 
-    t.end()
+    t.end();
 });
