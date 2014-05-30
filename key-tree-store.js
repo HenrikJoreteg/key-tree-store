@@ -28,7 +28,7 @@ KeyTreeStore.prototype.get = function (keypath) {
     var res = [];
 
     keys.forEach(function (key) {
-        if (key.indexOf(keypath) === 0) {
+        if (keypath === key || key.indexOf(keypath + '.') === 0) {
             res = res.concat(this.storage[key]);
         }
     }, this);
