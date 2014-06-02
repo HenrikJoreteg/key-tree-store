@@ -24,14 +24,14 @@ KeyTreeStore.prototype.remove = function (obj) {
 
 // grab all relevant objects
 KeyTreeStore.prototype.get = function (keypath) {
-    var keys = Object.keys(this.storage);
     var res = [];
+    var key;
 
-    keys.forEach(function (key) {
+    for (key in this.storage) {
         if (keypath === key || key.indexOf(keypath + '.') === 0) {
             res = res.concat(this.storage[key]);
         }
-    }, this);
+    }
 
     return res;
 };
