@@ -1,3 +1,6 @@
+var slice = Array.prototype.slice;
+
+// our constructor
 function KeyTreeStore() {
     this.storage = {};
 }
@@ -22,18 +25,33 @@ KeyTreeStore.prototype.remove = function (obj) {
     }
 };
 
-// grab all relevant objects
+// get array of all all relevant functions, without keys
 KeyTreeStore.prototype.get = function (keypath) {
-    var keys = Object.keys(this.storage);
     var res = [];
+    var key;
 
-    keys.forEach(function (key) {
+    for (key in this.storage) {
         if (keypath === key || key.indexOf(keypath + '.') === 0) {
             res = res.concat(this.storage[key]);
         }
-    }, this);
+    }
 
     return res;
 };
+
+// get all results that match keypath but still grouped by key
+KeyTreeStore.prototype.getGrouped = function (keypath) {
+    var res = {};
+    var key;
+
+    for (key in this.storage) {
+        if (keypath === key || key.indexOf(keypath + '.') === 0) {
+            res[key] = slice.call(this.storage[key]);
+        }
+    }
+
+    return res;
+};
+
 
 module.exports = KeyTreeStore;

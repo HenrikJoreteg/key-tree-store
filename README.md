@@ -39,6 +39,11 @@ tree.get('first'); // returns all of them
 tree.get('first.second'); // returns array of objects two, three and four
 tree.get('first.second.third'); // returns array of object four;
 
+// the `get` method returns them all in an array
+// if we still need them grouped by key we can use
+// `getGrouped`
+tree.getGrouped('first.second'); // returns {'first.second': [...], 'first.second.third': [...]}
+
 // that's all there is to it
 
 ```
