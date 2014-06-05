@@ -31,7 +31,7 @@ KeyTreeStore.prototype.get = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
             res = res.concat(this.storage[key]);
         }
     }
@@ -45,6 +45,20 @@ KeyTreeStore.prototype.getGrouped = function (keypath) {
     var key;
 
     for (key in this.storage) {
+        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+            res[key] = slice.call(this.storage[key]);
+        }
+    }
+
+    return res;
+};
+
+// get all results that match keypath but still grouped by key
+KeyTreeStore.prototype.getAll = function (keypath) {
+    var res = {};
+    var key;
+
+    for (key in this.storage) {
         if (keypath === key || key.indexOf(keypath + '.') === 0) {
             res[key] = slice.call(this.storage[key]);
         }
@@ -52,6 +66,7 @@ KeyTreeStore.prototype.getGrouped = function (keypath) {
 
     return res;
 };
+
 
 
 module.exports = KeyTreeStore;

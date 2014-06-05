@@ -44,6 +44,9 @@ tree.get('first.second.third'); // returns array of object four;
 // `getGrouped`
 tree.getGrouped('first.second'); // returns {'first.second': [...], 'first.second.third': [...]}
 
+// calling `.get()` or `.getGrouped` without arguments
+// returns all in appropriate format
+
 // that's all there is to it
 
 ```
