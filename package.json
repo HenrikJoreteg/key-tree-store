@@ -1,7 +1,7 @@
 {
   "name": "key-tree-store",
   "description": "Simple tool for storing/retrieving objects events based hierarchical keypaths.",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bugs": {
     "url": "https://github.com/HenrikJoreteg/key-tree-store/issues"
