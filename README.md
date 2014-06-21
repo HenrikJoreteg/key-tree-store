@@ -81,8 +81,11 @@ tree.add('key.path', function () {
 
 tree.run('key'); //=> function ran!
 
-// you can also optionally pass a context to run them with
+// you can also optionally pass a context or arguments to run them with
 tree.run('key', {some: 'object'});
+
+// with arguments
+tree.run('key', {some: 'object'}, 'arg1', 'arg2');
 
 ```
 

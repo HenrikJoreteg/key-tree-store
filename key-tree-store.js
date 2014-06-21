@@ -69,12 +69,9 @@ KeyTreeStore.prototype.getAll = function (keypath) {
 
 // run all matches with optional context
 KeyTreeStore.prototype.run = function (keypath, context) {
+    var args = slice.call(arguments, 2);
     this.get(keypath).forEach(function (fn) {
-        if (context) {
-            fn.call(context);
-        } else {
-            fn();
-        }
+        fn.apply(context || this, args);
     });
 };
 

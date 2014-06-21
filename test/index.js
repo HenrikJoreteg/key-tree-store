@@ -48,9 +48,11 @@ test('`run`', function (t) {
     var tree = new KeyTree();
     var oneRan, twoRan;
     var oneContext, twoContext;
+    var oneArgs;
     var one = function () {
         oneRan = true;
         oneContext = this;
+        oneArgs = arguments;
     };
     var two = function () {
         twoRan = true;
@@ -83,8 +85,10 @@ test('`run`', function (t) {
     reset();
 
     var context = {};
-    tree.run('one', context)
+    tree.run('one', context, 'hello', 'world');
     t.equal(oneContext, context);
+    t.equal(oneArgs[0], 'hello');
+    t.equal(oneArgs[1], 'world');
 
     t.end();
 });
