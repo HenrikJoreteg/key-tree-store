@@ -65,6 +65,27 @@ tree.add('key.path', obj1);
 tree.remove(obj1);
 ```
 
+running items:
+
+```javascript
+// as a shortcut, there's also the `run` method
+// to help you run functions that match they keypath
+// this assumes you're storing functions, of course.
+var KeyTree = require('key-tree-store');
+
+var tree = new KeyTree();
+
+tree.add('key.path', function () {
+    console.log('function ran!');
+});
+
+tree.run('key'); //=> function ran!
+
+// you can also optionally pass a context to run them with
+tree.run('key', {some: 'object'});
+
+```
+
 ## credits
 
 If you like this follow [@HenrikJoreteg](http://twitter.com/henrikjoreteg) on twitter.

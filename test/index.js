@@ -43,3 +43,48 @@ test('`add` should store objects', function (t) {
 
     t.end();
 });
+
+test('`run`', function (t) {
+    var tree = new KeyTree();
+    var oneRan, twoRan;
+    var oneContext, twoContext;
+    var one = function () {
+        oneRan = true;
+        oneContext = this;
+    };
+    var two = function () {
+        twoRan = true;
+        twoContext = this;
+    };
+
+    function reset() {
+        oneRan = false;
+        twoRan = false;
+        oneContext = null;
+        twoContext = null;
+    }
+
+    reset();
+
+    tree.add('one', one);
+    tree.add('two', two);
+
+    tree.run();
+
+    t.ok(oneRan);
+    t.ok(twoRan);
+
+    reset();
+
+    tree.run('one');
+    t.ok(oneRan);
+    t.notOk(twoRan);
+
+    reset();
+
+    var context = {};
+    tree.run('one', context)
+    t.equal(oneContext, context);
+
+    t.end();
+});

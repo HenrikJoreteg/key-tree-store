@@ -67,6 +67,17 @@ KeyTreeStore.prototype.getAll = function (keypath) {
     return res;
 };
 
+// run all matches with optional context
+KeyTreeStore.prototype.run = function (keypath, context) {
+    this.get(keypath).forEach(function (fn) {
+        if (context) {
+            fn.call(context);
+        } else {
+            fn();
+        }
+    });
+};
+
 
 
 module.exports = KeyTreeStore;
