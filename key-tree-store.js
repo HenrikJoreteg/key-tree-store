@@ -1,8 +1,9 @@
 var slice = Array.prototype.slice;
 
 // our constructor
-function KeyTreeStore() {
+function KeyTreeStore(separator) {
     this.storage = {};
+    this.separator = separator || '.';
 }
 
 // add an object to the store
@@ -31,7 +32,7 @@ KeyTreeStore.prototype.get = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res = res.concat(this.storage[key]);
         }
     }
@@ -45,7 +46,7 @@ KeyTreeStore.prototype.getGrouped = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
@@ -59,7 +60,7 @@ KeyTreeStore.prototype.getAll = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
