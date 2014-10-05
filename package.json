@@ -6,11 +6,9 @@
   "bugs": {
     "url": "https://github.com/HenrikJoreteg/key-tree-store/issues"
   },
-  "dependencies": {
-    "tape": "^2.13.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "tape": "~2.13.1"
+    "tape": "^3.0.0"
   },
   "directories": {
     "test": "test"
