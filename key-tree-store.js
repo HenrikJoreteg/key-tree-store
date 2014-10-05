@@ -1,9 +1,11 @@
 var slice = Array.prototype.slice;
 
 // our constructor
-function KeyTreeStore(separator) {
+function KeyTreeStore(options) {
+    options = options || {};
+
     this.storage = {};
-    this.separator = separator || '.';
+    this.separator = options.separator || '.';
 }
 
 // add an object to the store
