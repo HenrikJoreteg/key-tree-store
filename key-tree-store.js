@@ -5,6 +5,8 @@ function KeyTreeStore() {
     this.storage = {};
 }
 
+var DEFAULT_SEPARATOR = '.';
+
 // add an object to the store
 KeyTreeStore.prototype.add = function (keypath, obj) {
     var arr = this.storage[keypath] || (this.storage[keypath] = []);
@@ -31,7 +33,7 @@ KeyTreeStore.prototype.get = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
             res = res.concat(this.storage[key]);
         }
     }
@@ -45,7 +47,7 @@ KeyTreeStore.prototype.getGrouped = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
@@ -59,7 +61,7 @@ KeyTreeStore.prototype.getAll = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (keypath === key || key.indexOf(keypath + '.') === 0) {
+        if (keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
@@ -74,7 +76,5 @@ KeyTreeStore.prototype.run = function (keypath, context) {
         fn.apply(context || this, args);
     });
 };
-
-
 
 module.exports = KeyTreeStore;
