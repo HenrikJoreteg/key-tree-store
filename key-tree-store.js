@@ -1,11 +1,16 @@
 var slice = Array.prototype.slice;
 
 // our constructor
-function KeyTreeStore() {
-    this.storage = {};
-}
+function KeyTreeStore(options) {
+    options = options || {};
+    if (typeof options !== 'object') {
+        throw new TypeError('Options must be an object');
+    }
+    var DEFAULT_SEPARATOR = '.';
 
-var DEFAULT_SEPARATOR = '.';
+    this.storage = {};
+    this.separator = options.separator || DEFAULT_SEPARATOR;
+}
 
 // add an object to the store
 KeyTreeStore.prototype.add = function (keypath, obj) {
@@ -33,7 +38,7 @@ KeyTreeStore.prototype.get = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res = res.concat(this.storage[key]);
         }
     }
@@ -47,7 +52,7 @@ KeyTreeStore.prototype.getGrouped = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (!keypath || keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
+        if (!keypath || keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
@@ -61,7 +66,7 @@ KeyTreeStore.prototype.getAll = function (keypath) {
     var key;
 
     for (key in this.storage) {
-        if (keypath === key || key.indexOf(keypath + DEFAULT_SEPARATOR) === 0) {
+        if (keypath === key || key.indexOf(keypath + this.separator) === 0) {
             res[key] = slice.call(this.storage[key]);
         }
     }
