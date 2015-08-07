@@ -3,23 +3,23 @@
   "description": "Simple tool for storing/retrieving objects events based hierarchical keypaths.",
   "version": "1.2.1",
   "author": "Henrik Joreteg <henrik@andyet.net>",
-  "files": [
-    "key-tree-store.js"
-  ],
   "bugs": {
     "url": "https://github.com/HenrikJoreteg/key-tree-store/issues"
   },
   "devDependencies": {
-    "tape": "^3.5.0"
+    "tape": "^4.0.3"
   },
   "directories": {
     "test": "test"
   },
+  "files": [
+    "key-tree-store.js"
+  ],
   "homepage": "https://github.com/HenrikJoreteg/key-tree-store",
   "keywords": [
     "events",
-    "trigger",
-    "keypath"
+    "keypath",
+    "trigger"
   ],
   "license": "MIT",
   "main": "key-tree-store",
